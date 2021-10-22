@@ -11,6 +11,7 @@ import { OrderService } from './order.service';
 })
 export class OrderComponent implements OnInit {
 
+  delivery: number = 8;
 
   paymentOptions: RadioOption [] = [
     { label: 'Dinheiro', value: 'MON'},
