@@ -370,5 +370,18 @@
       "restaurantId": "tasty-treats"
     }
   ],
-  "orders": []
+  "orders": [
+    {
+      "address": "Rua Geni saraíva ",
+      "number": 232,
+      "optionalAddress": "casa 20",
+      "paymentOption": "MON",
+      "orderItems": [
+        {},
+        {},
+        {}
+      ],
+      "id": 1
+    }
+  ]
 }
