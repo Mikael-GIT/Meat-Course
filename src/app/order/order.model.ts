@@ -1,14 +1,15 @@
-import { CartItem } from '../restaurant-detail/shopping-cart/CartItem';
 class Order {
-  address: string;
-  number: number;
-  optionalAddress: string;
-  paymentOption: string;
-  orderItems: OrderItem [] = []
+  constructor(
+    public address: string,
+    public number: number,
+    public optionalAddress: string,
+    public paymentOption: string,
+    public orderItems: OrderItem[] = []
+  ){}
 }
 
 class OrderItem {
-  constructor(quantity: number, menuId: string){}
+  constructor(public quantity: number, public menuId: string){}
 }
 
-export {Order, OrderItem }
+export {Order, OrderItem}
