@@ -1,4 +1,4 @@
-import  { FormBuilder, FormGroup, Validators }  from  '@angular/forms';
+import  { AbstractControl, FormBuilder, FormGroup, Validators }  from  '@angular/forms';
 import { ShoppingCartService } from './../restaurant-detail/shopping-cart/shopping-cart.service';
 
 import { RadioOption } from './../shared/radio/RadioOption';
@@ -33,10 +33,23 @@ export class OrderComponent implements OnInit {
       number: this.formBuilder.control('', [Validators.required, Validators.pattern(this.numberPattern)]),
       optionalAddress: this.formBuilder.control(''),
       paymentOption: this.formBuilder.control('', [Validators.required])
-    })
+    }, {validator: OrderComponent.equalsTo})
   }
 
   ngOnInit() {
+  }
+
+  //Funcao que faz a validacao se os campos de email sao iguais
+  static equalsTo(group: AbstractControl): {[key:string]: boolean} {
+    const email = group.get('email')
+    const emailConfirmation = group.get('emailConfirmation')
+    if(!email || !emailConfirmation){
+      return undefined
+    }
+    if(email.value !== emailConfirmation.value){
+      return {emailsNotMatch:true}
+    }
+    return undefined
   }
 
   itemsValue(): number {
