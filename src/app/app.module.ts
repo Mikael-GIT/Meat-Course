@@ -20,11 +20,8 @@ import { RestaurantComponent } from './restaurants/restaurant/restaurant.compone
 import { RestaurantDetailComponent } from './restaurant-detail/restaurant-detail.component';
 import { ShoppingCartComponent } from './restaurant-detail/shopping-cart/shopping-cart.component';
 import { ShoppingCartService } from './restaurant-detail/shopping-cart/shopping-cart.service';
-import { OrderComponent } from './order/order.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { OrderItemsComponent } from './order/order-items/order-items.component';
 import { OrderService } from './order/order.service';
-import { DeliveryCostsComponent } from './order/delivery-costs/delivery-costs.component';
 import { OrderSummaryComponent } from './order-summary/order-summary.component';
 
 
@@ -41,9 +38,6 @@ import { OrderSummaryComponent } from './order-summary/order-summary.component';
     ShoppingCartComponent,
     MenuItemComponent,
     ReviewsComponent,
-    OrderComponent,
-    OrderItemsComponent,
-    DeliveryCostsComponent,
     OrderSummaryComponent,
   ],
   imports: [
