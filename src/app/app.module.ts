@@ -5,7 +5,7 @@ import { MenuComponent } from './restaurant-detail/menu/menu.component';
 import { BrowserModule } from '@angular/platform-browser';
 import { LOCALE_ID, NgModule } from '@angular/core';
 import { HttpModule } from '@angular/http';
-import { RouterModule } from '@angular/router';
+import { RouterModule, PreloadAllModules } from '@angular/router';
 
 import { Routes } from '@angular/router';
 
@@ -40,7 +40,7 @@ import { OrderSummaryComponent } from './order-summary/order-summary.component';
   imports: [
     BrowserModule,
     HttpModule,
-    RouterModule.forRoot(ROUTES),
+    RouterModule.forRoot(ROUTES, {preloadingStrategy: PreloadAllModules}),
     SharedModule.forRoot() //Todos os components do shared module mais os providers
   ],
   providers: [{provide: LOCALE_ID, useValue: 'pt-BR'}],
