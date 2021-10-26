@@ -1,4 +1,3 @@
-import { CoreModule } from './core/core.module';
 import { SharedModule } from './shared/shared.module';
 import { ReviewsComponent } from './restaurant-detail/reviews/reviews.component';
 import { MenuItemComponent } from './restaurant-detail/menu-item/menu-item.component';
@@ -42,8 +41,7 @@ import { OrderSummaryComponent } from './order-summary/order-summary.component';
     BrowserModule,
     HttpModule,
     RouterModule.forRoot(ROUTES),
-    SharedModule,
-    CoreModule
+    SharedModule.forRoot() //Todos os components do shared module mais os providers
   ],
   providers: [{provide: LOCALE_ID, useValue: 'pt-BR'}],
   bootstrap: [AppComponent]
