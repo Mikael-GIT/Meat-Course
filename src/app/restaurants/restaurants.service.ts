@@ -15,8 +15,8 @@ export class RestaurantService {
 
   constructor(private http: Http){}
 
-  getRestaurants(): Observable<Restaurant[]> { //Este método vai retornar um array de restaurants
-    return this.http.get(`${this.baseUrl}restaurants`)
+  getRestaurants(search?: string): Observable<Restaurant[]> { //Este método vai retornar um array de restaurants
+    return this.http.get(`${this.baseUrl}restaurants`, {params: {q: search}})
     .map(response => response.json()) //Este método vai retornar um response, este response tem o status, o corpo e afins, então precisamos fazer um map
     //para "filtrar" o que precisamos. Ou seja, estamos mapeando, trocando a resposta pelo json que vem com a resposta.
     .catch(ErrorHandler.handleError);
