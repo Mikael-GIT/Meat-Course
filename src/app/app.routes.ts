@@ -1,3 +1,4 @@
+import { NotFoundComponent } from './not-found/not-found.component';
 import { OrderSummaryComponent } from './order-summary/order-summary.component';
 import { OrderComponent } from './order/order.component';
 import { ReviewsComponent } from './restaurant-detail/reviews/reviews.component';
@@ -18,5 +19,6 @@ export const ROUTES: Routes = [
     ]},
   { path: 'order', loadChildren:'./order/order.module#OrderModule' },
   { path: 'order-summary', component: OrderSummaryComponent },
-  { path: 'restaurants', component: RestaurantsComponent }
+  { path: 'restaurants', component: RestaurantsComponent },
+  { path: '**', component: NotFoundComponent }
 ];
