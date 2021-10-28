@@ -8,10 +8,11 @@ import { RadioComponent } from './radio/radio.component';
 import { InputComponent } from './input/input.component';
 import {ModuleWithProviders, NgModule} from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { SnackbarComponent } from './messages/snackbar/snackbar.component';
 
 
 @NgModule({
-  declarations: [InputComponent, RadioComponent, RatingComponent],
+  declarations: [InputComponent, RadioComponent, RatingComponent, SnackbarComponent],
   imports: [
     FormsModule,
     ReactiveFormsModule,
@@ -21,6 +22,7 @@ import { RouterModule, Routes } from '@angular/router';
     InputComponent,
     RadioComponent,
     RatingComponent,
+    SnackbarComponent,
     FormsModule,
     ReactiveFormsModule,
     CommonModule
