@@ -7,7 +7,9 @@ import { trigger, state, style, transition, animate } from "@angular/animations"
 import 'rxjs/add/operator/switchMap'
 import 'rxjs/add/operator/debounceTime'
 import 'rxjs/add/operator/distinctUntilChanged'
-
+import 'rxjs/add/operator/catch'
+import 'rxjs/add/observable/from'
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'mt-restaurants',
@@ -52,7 +54,9 @@ export class RestaurantsComponent implements OnInit {
       .debounceTime(500) //Esperar 500 ms para executar o evento
       .distinctUntilChanged() //Se o resultado for igual ao ultimo ele nao chama de novo
       .switchMap(
-        searchTerm => this.restaurant.getRestaurants(searchTerm))
+        searchTerm => this.restaurant.getRestaurants(searchTerm)
+        .catch(error =>
+        Observable.from([])))
       .subscribe(restaurants => this.restaurants = restaurants)
   }
 

@@ -3,7 +3,7 @@
   <h1>
     Todos os Restaurantes
     <a (click)="toggleSearch()" class="search-link pull-right">
-      <span *ngIf="iptSearch.value"><small>"{{iptSearch.value}}"</small></span><i class="fa fa-search"></i>
+      <span *ngIf="iptSearch.value" style="margin-right: 10px;"><small>"{{iptSearch.value}}"</small></span><i class="fa fa-search"></i>
     </a>
   </h1>
 </section>
@@ -14,6 +14,11 @@
     <form [formGroup]="searchForm">
       <div class="form-group">
           <input type="text" #iptSearch  formControlName="searchControl" class="form-control" placeholder="O que você está procurando?">
+      </div>
+      <div class="col-xs-12">
+        <p class="lead text-center" *ngIf="restaurants?.length === 0">
+          Não foram encontrados itens para a sua busca
+        </p>
       </div>
     </form>
   </div>
