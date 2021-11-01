@@ -12,7 +12,7 @@ export class InputComponent implements OnInit, AfterContentInit {
 
   @ContentChild(FormControlName) control: FormControlName
   @ContentChild(NgModel) model: NgModel //Pega uma referência da classe pai ao elemento que estamos vinculando
-
+  @Input() showTip: boolean = false
 
   constructor() { }
 

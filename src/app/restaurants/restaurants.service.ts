@@ -5,13 +5,11 @@ import { Observable } from "rxjs/Observable";
 import { Restaurant } from "./restaurant/restaurant.model";
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
-import { ErrorHandler } from "app/app.error-handler";
+import {MEAT_API} from '../app.api'
 
 
 @Injectable()
 export class RestaurantService {
-
-  baseUrl = 'http://localhost:3000/'
 
   constructor(private http: HttpClient){}
 
@@ -20,22 +18,22 @@ export class RestaurantService {
     if(search){
       params = new HttpParams().append('q', search)
     }
-    return this.http.get<Restaurant[]>(`${this.baseUrl}restaurants`, {params: params})
+    return this.http.get<Restaurant[]>(`${MEAT_API}/restaurants`, {params: params})
   }
 
   rests: Restaurant[] = [];
 
 
   getRestaurantById(id: string): Observable<Restaurant>{
-    return this.http.get<Restaurant>(`${this.baseUrl}restaurants/${id}`)
+    return this.http.get<Restaurant>(`${MEAT_API}/restaurants/${id}`)
   }
 
   reviewsOfRestaurant(id: string): Observable<any> {
-    return this.http.get(`${this.baseUrl}restaurants/${id}/reviews`)
+    return this.http.get(`$${MEAT_API}/restaurants/${id}/reviews`)
   }
 
   menuOfRestaurant(id: string): Observable<MenuItem[]> {
-    return this.http.get<MenuItem[]>(`${this.baseUrl}restaurants/${id}/menu`)
+    return this.http.get<MenuItem[]>(`${MEAT_API}/restaurants/${id}/menu`)
   }
 }
 
