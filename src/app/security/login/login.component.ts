@@ -1,3 +1,5 @@
+import { ActivatedRoute, Router } from '@angular/router';
+import { NotificationService } from './../../shared/messages/notification.service';
 import { LoginService } from './login.service';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
@@ -8,8 +10,15 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 export class LoginComponent implements OnInit {
 
   loginForm: FormGroup
+  navigateTo: string
 
-  constructor(private fb: FormBuilder, private loginService: LoginService) {
+  constructor(
+    private fb: FormBuilder,
+    private loginService: LoginService,
+    private notificationService: NotificationService,
+    private activatedRoute: ActivatedRoute,
+    private router: Router
+    ) {
 
     this.loginForm = this.fb.group({
       email: this.fb.control('', [Validators.required, Validators.email]),
@@ -19,10 +28,16 @@ export class LoginComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.navigateTo = this.activatedRoute.snapshot.params['to'] || '/'
   }
 
   login(){
     this.loginService.login(this.loginForm.value.email, this.loginForm.value.password)
-    .subscribe(user => console.log(user))
+    .subscribe(user => this.notificationService.notify(`Bem vindo, ${user.name}`),
+    response => //httpResponseError
+    this.notificationService.notify(response.error.message),
+    ()=> {
+      this.router.navigate([this.navigateTo])
+    })
   }
 }
