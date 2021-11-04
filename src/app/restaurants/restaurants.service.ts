@@ -29,7 +29,7 @@ export class RestaurantService {
   }
 
   reviewsOfRestaurant(id: string): Observable<any> {
-    return this.http.get(`$${MEAT_API}/restaurants/${id}/reviews`)
+    return this.http.get(`${MEAT_API}/restaurants/${id}/reviews`)
   }
 
   menuOfRestaurant(id: string): Observable<MenuItem[]> {
