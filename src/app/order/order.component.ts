@@ -7,6 +7,7 @@ import { CartItem } from 'app/restaurant-detail/shopping-cart/CartItem';
 import { OrderService } from './order.service';
 import { Order, OrderItem } from './order.model';
 import { Router } from '@angular/router';
+import 'rxjs/add/operator/do'
 
 @Component({
   selector: 'mt-order',
@@ -18,6 +19,7 @@ export class OrderComponent implements OnInit {
   delivery: number = 8;
   emailPattern = /^(([^<>()\[\]\.,;:\s@\"]+(\.[^<>()\[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i
   numberPattern = /^[0-9]*$/
+  orderId: string
 
   paymentOptions: RadioOption [] = [
     { label: 'Dinheiro', value: 'MON'},
@@ -74,11 +76,18 @@ export class OrderComponent implements OnInit {
 
   checkOrder(order: Order){
     order.orderItems = this.cartItems().map((item:CartItem) => new OrderItem(item.quantity, item.menuItem.id))
-    this.orderService.checkOrder(order).subscribe((orderId: string) => {
+    this.orderService.checkOrder(order)
+    .do((orderId: string) => {
+      this.orderId = orderId
+    })
+    .subscribe((orderId: string) => {
       this.router.navigate(['/order-summary'])
       console.log("Compra conclúida: " + orderId)
       this.orderService.clear()
     });
   }
 
+  isOrderCompleted(): boolean {
+    return this.orderId !== undefined
+  }
 }
